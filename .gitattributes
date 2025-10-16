@@ -1,0 +1,9 @@
+# --- Blazor / .NET project language overrides ---
+
+# Compter les fichiers .razor comme du C#
+*.razor linguist-language=C#
+*.razor.css linguist-language=CSS
+
+# Les fichiers générés par Blazor (framework côté client) ne doivent pas biaiser les stats
+wwwroot/_framework/* linguist-vendored
+wwwroot/_content/* linguist-vendored

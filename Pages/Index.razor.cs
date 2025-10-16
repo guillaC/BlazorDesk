@@ -6,11 +6,11 @@ namespace DeskUI.Pages
     {
         async Task OpenFirstComponent()
         {
-           await WindowManager.Show("FirstComponent", builder =>
-            {
-                builder.OpenComponent<FirstComponent>(0);
-                builder.CloseComponent();
-            }, width: 300);
+            await WindowManager.Show("FirstComponent", builder =>
+             {
+                 builder.OpenComponent<FirstComponent>(0);
+                 builder.CloseComponent();
+             }, width: 300);
         }
 
         async Task OpenSecondComponent()
