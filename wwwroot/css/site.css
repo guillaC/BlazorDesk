@@ -76,3 +76,7 @@ a, .btn-link {
     cursor: move;
     display: flex;
 }
+
+.rz-dialog.floating-window {
+    max-width: none;
+}

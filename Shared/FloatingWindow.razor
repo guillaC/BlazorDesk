@@ -2,10 +2,10 @@
 @inject IJSRuntime JSRuntime
 @inject WindowManager WindowManager
 
-<div id="@WindowId" class="rz-dialog rz-open rz-dialog-alert" role="dialog" aria-labelledby="rz-dialog-0-label" style="@Style" @onclick="BringToFront">
+<div id="@WindowId" class="rz-dialog rz-open floating-window" style="@Style" @onclick="BringToFront">
     <div class="rz-dialog-titlebar window-header">
-        <div class="rz-dialog-title" id="rz-dialog-0-label">@Title</div>
-        <a role="button" class="rz-dialog-titlebar-icon rz-dialog-titlebar-close" tabindex="0" @onclick="Close">
+        <div class="rz-dialog-title">@Title</div>
+        <a role="button" class="rz-dialog-titlebar-icon rz-dialog-titlebar-close" @onclick="Close">
             <span class="notranslate rzi rzi-times"></span>
         </a>
     </div>
@@ -13,7 +13,6 @@
         @ChildContent
     </div>
 </div>
-
 
 @code {
     [Parameter] public string Title { get; set; } = "Fenêtre";
@@ -23,14 +22,17 @@
     [Parameter] public Guid Id { get; set; }
     [Parameter] public int Top { get; set; }
     [Parameter] public int Left { get; set; }
+    [Parameter] public int Width { get; set; }
 
     private DotNetObjectReference<FloatingWindow>? _dotNetRef;
 
     public string TopPx => $"{Top}px";
     public string LeftPx => $"{Left}px";
+    public string WidthPx => $"{Width}px";
     private string WindowId => $"window-{Id}";
 
-    private string Style => $"position:fixed; top:{Top}px; left:{Left}px; z-index:{ZIndex};";
+    private string Style => $"position:fixed; top:{TopPx}; left:{LeftPx}; width:{WidthPx}; z-index:{ZIndex};";
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -45,8 +47,12 @@
     private async Task BringToFront()
     {
         await WindowManager.BringToFront(Id);
-        var z = WindowManager.GetZIndex(Id);
-        await JSRuntime.InvokeVoidAsync("window.windowInterop.setZIndex", WindowId, z);
+        var win = WindowManager.GetWindow(Id);
+        if (win != null)
+        {
+            await JSRuntime.InvokeVoidAsync("window.windowInterop.setZIndex", WindowId, win.ZIndex);
+            await JSRuntime.InvokeVoidAsync("window.windowInterop.setWidth", WindowId, win.Width);
+        }
     }
 
     private async Task Close()
@@ -55,8 +61,8 @@
     }
 
     [JSInvokable]
-    public async Task UpdatePosition(int top, int left)
+    public async Task UpdatePosition(int top, int left, int width)
     {
-        await WindowManager.UpdatePosition(Id, top, left);
+        await WindowManager.UpdatePosition(Id, top, left, width);
     }
 }
