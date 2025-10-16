@@ -1,0 +1,21 @@
+﻿@using DeskUI.Services
+
+@inject WindowManager WindowManager
+
+@foreach (var window in WindowManager.Windows)
+{
+    <FloatingWindow Title="@window.Title"
+                    ChildContent="@window.Content"
+                    ZIndex="@window.ZIndex"
+                    Id="@window.Id"
+                    Top="@window.Top"
+                    Left="@window.Left"
+                    OnCloseRequested="@(() => WindowManager.Close(window.Id))" />
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        WindowManager.OnChange += async () => await InvokeAsync(StateHasChanged);
+    }
+}

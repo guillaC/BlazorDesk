@@ -1,0 +1,62 @@
+﻿@using DeskUI.Services
+@inject IJSRuntime JSRuntime
+@inject WindowManager WindowManager
+
+<div id="@WindowId" class="rz-dialog rz-open rz-dialog-alert" role="dialog" aria-labelledby="rz-dialog-0-label" style="@Style" @onclick="BringToFront">
+    <div class="rz-dialog-titlebar window-header">
+        <div class="rz-dialog-title" id="rz-dialog-0-label">@Title</div>
+        <a role="button" class="rz-dialog-titlebar-icon rz-dialog-titlebar-close" tabindex="0" @onclick="Close">
+            <span class="notranslate rzi rzi-times"></span>
+        </a>
+    </div>
+    <div class="rz-dialog-content rz-dialog-content window-content">
+        @ChildContent
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public string Title { get; set; } = "Fenêtre";
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public EventCallback OnCloseRequested { get; set; }
+    [Parameter] public int ZIndex { get; set; }
+    [Parameter] public Guid Id { get; set; }
+    [Parameter] public int Top { get; set; }
+    [Parameter] public int Left { get; set; }
+
+    private DotNetObjectReference<FloatingWindow>? _dotNetRef;
+
+    public string TopPx => $"{Top}px";
+    public string LeftPx => $"{Left}px";
+    private string WindowId => $"window-{Id}";
+
+    private string Style => $"position:fixed; top:{Top}px; left:{Left}px; z-index:{ZIndex};";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _dotNetRef = DotNetObjectReference.Create(this);
+            await JSRuntime.InvokeVoidAsync("window.windowInterop.makeDraggableResizable", WindowId, _dotNetRef);
+            await JSRuntime.InvokeVoidAsync("window.windowInterop.setZIndex", WindowId, ZIndex);
+        }
+    }
+
+    private async Task BringToFront()
+    {
+        await WindowManager.BringToFront(Id);
+        var z = WindowManager.GetZIndex(Id);
+        await JSRuntime.InvokeVoidAsync("window.windowInterop.setZIndex", WindowId, z);
+    }
+
+    private async Task Close()
+    {
+        await OnCloseRequested.InvokeAsync();
+    }
+
+    [JSInvokable]
+    public async Task UpdatePosition(int top, int left)
+    {
+        await WindowManager.UpdatePosition(Id, top, left);
+    }
+}
