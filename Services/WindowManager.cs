@@ -5,43 +5,33 @@ namespace DeskUI.Services
     public class WindowManager
     {
         public event Func<Task>? OnChange;
-        public List<WindowInstance> Windows { get; } = new();
-        public WindowInstance? GetWindow(Guid id) => Windows.FirstOrDefault(w => w.Id == id);
-
-
         private int _zCounter = 1000;
 
-        public async Task Show(string title, RenderFragment content, int width)
+        public List<WindowInstance> Windows { get; } = new();
+
+        public async Task Show(string title, RenderFragment content, int width = 600, int top = 100, int left = 100)
         {
             var id = Guid.NewGuid();
             Windows.Add(new WindowInstance
             {
                 Id = id,
                 Title = title,
-                Width = width,
                 Content = content,
+                Width = width,
+                Top = top,
+                Left = left,
                 ZIndex = ++_zCounter
             });
 
             if (OnChange != null) await OnChange.Invoke();
         }
 
-        public int GetWidth(Guid id)
-        {
-            var win = Windows.FirstOrDefault(w => w.Id == id);
-            return win?.Width ?? 0;
-        }
-
-
-        public int GetZIndex(Guid id)
-        {
-            var win = Windows.FirstOrDefault(w => w.Id == id);
-            return win?.ZIndex ?? 0;
-        }
+        public WindowInstance? GetWindow(Guid id)
+            => Windows.FirstOrDefault(w => w.Id == id);
 
         public async Task BringToFront(Guid id)
         {
-            var win = Windows.FirstOrDefault(w => w.Id == id);
+            var win = GetWindow(id);
             if (win != null)
             {
                 win.ZIndex = ++_zCounter;
@@ -57,13 +47,12 @@ namespace DeskUI.Services
 
         public async Task UpdatePosition(Guid id, int top, int left, int width)
         {
-            var win = Windows.FirstOrDefault(w => w.Id == id);
+            var win = GetWindow(id);
             if (win != null)
             {
                 win.Top = top;
                 win.Left = left;
                 win.Width = width;
-
                 if (OnChange != null) await OnChange.Invoke();
             }
         }

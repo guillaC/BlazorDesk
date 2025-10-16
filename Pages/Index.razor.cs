@@ -1,6 +1,4 @@
 ﻿using DeskUI.Shared.Components.Test;
-using Radzen;
-using System.Threading.Tasks;
 
 namespace DeskUI.Pages
 {
@@ -12,7 +10,7 @@ namespace DeskUI.Pages
             {
                 builder.OpenComponent<FirstComponent>(0);
                 builder.CloseComponent();
-            }, width: 900);
+            }, width: 300);
         }
 
         async Task OpenSecondComponent()
