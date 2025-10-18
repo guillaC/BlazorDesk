@@ -1,0 +1,113 @@
+﻿.window {
+    position: fixed;
+    border-radius: 5px;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    overflow: hidden;
+    user-select: none;
+    pointer-events: auto;
+}
+
+    .window * {
+        pointer-events: auto;
+    }
+
+/* DARK THEME */
+.theme-dark.window {
+    background-color: #262626; 
+    border: 1px solid #4a4a4a; 
+    box-shadow: 0 0 0 1px #111, 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: #e0e0e0;
+}
+
+.theme-dark .window-header {
+    background-color: #333;
+    color: #f0f0f0;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    border-bottom: 1px solid #555;
+}
+
+.theme-dark .window-title {
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.theme-dark .window-close {
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px;
+    transition: color 0.15s ease-in-out;
+}
+
+    .theme-dark .window-close:hover {
+        color: #fff;
+    }
+
+.theme-dark .window-content {
+    padding: 10px;
+    background-color: #2f2f2f;
+    overflow: auto;
+    border-top: 1px solid #444;
+}
+
+/* LIGHT THEME */
+.theme-light.window {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 0 1px #ddd, 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.theme-light .window-header {
+    background-color: #e0e0e0;
+    color: #222;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    border-bottom: 1px solid #ccc;
+}
+
+.theme-light .window-title {
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.theme-light .window-close {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 8px;
+    transition: color 0.15s ease-in-out;
+}
+
+    .theme-light .window-close:hover {
+        color: #000;
+    }
+
+.theme-light .window-content {
+    padding: 10px;
+    background-color: #ffffff;
+    overflow: auto;
+    border-top: 1px solid #ddd;
+}

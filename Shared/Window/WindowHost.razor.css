@@ -1,0 +1,14 @@
+﻿.window-host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+    .window-host .window,
+    .window-host .window * {
+        pointer-events: auto;
+    }

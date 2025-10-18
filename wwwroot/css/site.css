@@ -71,21 +71,3 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
-
-.window-header {
-    cursor: move;
-    display: flex;
-}
-
-.rz-dialog.floating-window {
-    max-width: none;
-}
-
-.desktop-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
-    grid-auto-rows: 200px;
-    gap: 16px;
-    padding: 16px;
-    align-content: start;
-}
