@@ -6,7 +6,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddCascadingAuthenticationState();
-builder.Services.AddSingleton<WindowManager>();
+builder.Services.AddScoped<WindowManager>();
 
 var app = builder.Build();
 

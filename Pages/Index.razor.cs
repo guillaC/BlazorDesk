@@ -9,8 +9,7 @@ namespace DeskUI.Pages
             WindowManager.SetDarkMode(!WindowManager.DarkModeColours);
         }
 
-        async Task OpenFirstComponent()
-
+        async Task OpenFirstWindow()
         {
             await WindowManager.Show("FirstComponent", builder =>
              {
@@ -19,7 +18,7 @@ namespace DeskUI.Pages
              }, width: 300);
         }
 
-        async Task OpenSecondComponent()
+        async Task OpenSecondWindow()
         {
             await WindowManager.Show("SecondComponent", builder =>
             {
