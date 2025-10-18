@@ -25,7 +25,7 @@ namespace DeskUI.Pages
             {
                 builder.OpenComponent<SecondForm>(0);
                 builder.CloseComponent();
-            }, width: 900);
+            }, width: 600);
         }
     }
 }
