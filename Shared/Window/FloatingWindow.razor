@@ -5,8 +5,7 @@
 <div id="@WindowId"
      class="window @(WindowManager.DarkModeColours ? "theme-dark" : "theme-light")"
      style="@Style"
-     @onmousedown="BringToFront"
-     @onmouseup="OnMouseUp">
+     @onmousedown="BringToFront">
     <div class="window-header" @onmousedown="StartDrag">
         <div class="window-title">@Title</div>
         <button class="window-close" @onclick="Close">&times;</button>
@@ -15,4 +14,6 @@
     <div class="window-content">
         @ChildContent
     </div>
+
+    <div class="window-resizer" @onmousedown="StartResize"></div>
 </div>

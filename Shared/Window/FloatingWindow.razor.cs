@@ -12,10 +12,11 @@ namespace DeskUI.Shared.Window
         [Parameter] public int Top { get; set; }
         [Parameter] public int Left { get; set; }
         [Parameter] public int Width { get; set; }
+        [Parameter] public int Height { get; set; }
         [Parameter] public EventCallback OnCloseRequested { get; set; }
 
         private string WindowId => $"window-{Id}";
-        private string Style => $"position:fixed; top:{Top}px; left:{Left}px; width:{Width}px; z-index:{ZIndex};";
+        private string Style => $"position:fixed; top:{Top}px; left:{Left}px; width:{Width}px; {(Height>0 ? "height:" + Height + "px;" : "")} z-index:{ZIndex};";
 
         protected override void OnInitialized()
         {
@@ -32,21 +33,20 @@ namespace DeskUI.Shared.Window
             InvokeAsync(StateHasChanged);
         }
 
-        private async Task OnMouseUp(MouseEventArgs _)
+        private void StartResize(MouseEventArgs e)
         {
-            await WindowManager.StopDrag();
-            await InvokeAsync(StateHasChanged);
+            WindowManager.StartResize(Id, (int)e.ClientX, (int)e.ClientY);
+        }
+
+        private void StartDrag(MouseEventArgs e)
+        {
+            WindowManager.StartDrag(Id, (int)e.ClientX, (int)e.ClientY);
         }
 
         private async Task BringToFront(MouseEventArgs _)
         {
             await WindowManager.BringToFront(Id);
             await InvokeAsync(StateHasChanged);
-        }
-
-        private void StartDrag(MouseEventArgs e)
-        {
-            WindowManager.StartDrag(Id, (int)e.ClientX, (int)e.ClientY);
         }
 
         private async Task Close()

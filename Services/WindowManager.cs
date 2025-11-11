@@ -4,15 +4,18 @@ namespace DeskUI.Services
 {
     public class WindowManager
     {
+        public record DragContext(WindowInstance Window, int StartX, int StartY, int InitialLeft, int InitialTop);
+        public record ResizeContext(WindowInstance Window, int StartX, int StartY, int InitialWidth, int InitialHeight);
         public event Func<Task>? OnChange;
         public event Action? OnThemeChanged;
-
         private int _zCounter = 1000;
         public List<WindowInstance> Windows { get; } = new();
         public bool DarkModeColours { get; private set; } = false;
         public DragContext? Dragged { get; private set; }
+        public ResizeContext? Resizing { get; private set; }
         public bool IsDragging => Dragged is not null;
-        public record DragContext(WindowInstance Window, int StartX, int StartY, int InitialLeft, int InitialTop);
+        public bool IsResizing => Resizing is not null;
+        public WindowInstance? GetWindow(Guid id) => Windows.FirstOrDefault(w => w.Id == id);
 
         public async Task Show(string title, RenderFragment content, int width = 600, int top = 100, int left = 100)
         {
@@ -31,8 +34,6 @@ namespace DeskUI.Services
             if (OnChange != null) await OnChange.Invoke();
         }
 
-        public WindowInstance? GetWindow(Guid id) => Windows.FirstOrDefault(w => w.Id == id);
-
         public void StartDrag(Guid id, int startX, int startY)
         {
             var win = GetWindow(id);
@@ -47,6 +48,12 @@ namespace DeskUI.Services
             return Task.CompletedTask;
         }
 
+        public Task StopResize()
+        {
+            Resizing = null;
+            return Task.CompletedTask;
+        }
+
         public async Task HandleMouseMove(int clientX, int clientY)
         {
             if (Dragged is null) return;
@@ -57,8 +64,7 @@ namespace DeskUI.Services
             Dragged.Window.Left = Dragged.InitialLeft + dx;
             Dragged.Window.Top = Dragged.InitialTop + dy;
 
-            if (OnChange != null)
-                await OnChange.Invoke();
+            if (OnChange != null) await OnChange.Invoke();
         }
 
         public async Task BringToFront(Guid id)
@@ -71,6 +77,28 @@ namespace DeskUI.Services
             }
         }
 
+        public void StartResize(Guid id, int startX, int startY)
+        {
+            var win = GetWindow(id);
+            if (win is null) return;
+
+            Resizing = new ResizeContext(win, startX, startY, win.Width, win.Height);
+        }
+
+        public async Task HandleResize(int clientX, int clientY)
+        {
+            if (Resizing?.Window is null) return;
+
+            var dx = clientX - Resizing.StartX;
+            var newWidth = Resizing.InitialWidth + dx;
+            var newHeight = clientY - Resizing.Window.Top + 10;
+
+            Resizing.Window.Width = Math.Max(150, newWidth);
+            Resizing.Window.Height = Math.Max(100, newHeight);
+            if (OnChange is not null) await OnChange.Invoke();
+        }
+
+
         public void Close(Guid id)
         {
             Windows.RemoveAll(w => w.Id == id);
@@ -80,7 +108,7 @@ namespace DeskUI.Services
         public async Task UpdatePosition(Guid id, int top, int left, int? width = null)
         {
             var win = GetWindow(id);
-            if (win != null)
+            if (win is not null)
             {
                 win.Top = top;
                 win.Left = left;
@@ -105,5 +133,6 @@ namespace DeskUI.Services
         public int Width { get; set; }
         public int Top { get; set; }
         public int Left { get; set; }
+        public int Height { get; set; }
     }
 }

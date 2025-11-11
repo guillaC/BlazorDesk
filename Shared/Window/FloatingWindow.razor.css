@@ -1,8 +1,8 @@
 ﻿.window {
     position: fixed;
     border-radius: 5px;
-    font-family: Consolas, monospace;
-    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
     overflow: hidden;
     user-select: none;
     pointer-events: auto;
@@ -12,7 +12,17 @@
         pointer-events: auto;
     }
 
-/* DARK THEME */
+.window-resizer {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: -1px;
+    bottom: -1px;
+    cursor: nwse-resize;
+    background: rgba(200, 200, 200, 0.7);
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
 .theme-dark.window {
     background-color: #262626; 
     border: 1px solid #4a4a4a; 
@@ -57,14 +67,11 @@
 
 .theme-dark .window-content {
     padding: 10px;
-    background-color: #2f2f2f;
     overflow: auto;
-    border-top: 1px solid #444;
 }
 
-/* LIGHT THEME */
 .theme-light.window {
-    background-color: #f0f0f0;
+    background-color: #FFFFFF;
     border: 1px solid #ccc;
     box-shadow: 0 0 0 1px #ddd, 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #333;
@@ -74,7 +81,7 @@
     background-color: #e0e0e0;
     color: #222;
     padding: 6px 10px;
-    display: flex;
+    display: flex;      
     justify-content: space-between;
     align-items: center;
     cursor: move;
@@ -107,7 +114,5 @@
 
 .theme-light .window-content {
     padding: 10px;
-    background-color: #ffffff;
     overflow: auto;
-    border-top: 1px solid #ddd;
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
+﻿using Microsoft.JSInterop;
 
 namespace DeskUI.Shared.Window
 {
@@ -24,13 +23,15 @@ namespace DeskUI.Shared.Window
         [JSInvokable]
         public Task HandleMouseMove(int x, int y)
         {
-            if (!WindowManager.IsDragging) return Task.CompletedTask;
-            return WindowManager.HandleMouseMove(x, y);
+            if (WindowManager.IsDragging) return WindowManager.HandleMouseMove(x, y);
+            if (WindowManager.IsResizing) return WindowManager.HandleResize(x, y);
+            return Task.CompletedTask;
         }
 
-        private async Task OnMouseUp(MouseEventArgs e)
+        private async Task OnMouseUp()
         {
             await WindowManager.StopDrag();
+            await WindowManager.StopResize();
         }
     }
 }
