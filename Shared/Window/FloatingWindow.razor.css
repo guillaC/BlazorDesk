@@ -6,11 +6,18 @@
     overflow: hidden;
     user-select: none;
     pointer-events: auto;
+    display: flex;
+    flex-direction: column;
 }
 
     .window * {
         pointer-events: auto;
     }
+
+.window-content {
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
 
 .window-resizer {
     position: absolute;

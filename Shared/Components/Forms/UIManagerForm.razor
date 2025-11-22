@@ -1,0 +1,41 @@
+﻿@using DeskUI.Services
+@inject WindowManager WindowManager
+
+<h3>UIManager</h3>
+
+<table class="table table-sm table-hover table-bordered table-rounded align-middle @(WindowManager.DarkModeColours ? "table-dark" : "table-light")">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>ID</th>
+            <th>Position</th>
+            <th>Size</th>
+            <th>ZIndex</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (WindowManager.Windows.Any())
+        {
+            var maxZ = WindowManager.Windows.Max(w => w.ZIndex);
+
+            @foreach (var window in WindowManager.Windows)
+            {
+                <tr class="@(window.ZIndex == maxZ ? "table-success fw-semibold" : "")">
+                    <td>@window.Title</td>
+                    <td>@window.Id</td>
+                    <td>@window.Left,@window.Top</td>
+                    <td>@window.Width x @window.Height</td>
+                    <td>@window.ZIndex</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    protected override void OnInitialized()
+    {
+        WindowManager.OnChange += () => InvokeAsync(StateHasChanged);
+        WindowManager.OnThemeChanged += () => InvokeAsync(StateHasChanged);
+    }
+}

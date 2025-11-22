@@ -1,4 +1,5 @@
-﻿using DeskUI.Shared.Components.Forms;
+﻿using DeskUI.Services;
+using DeskUI.Shared.Components.Forms;
 
 namespace DeskUI.Pages
 {
@@ -15,7 +16,7 @@ namespace DeskUI.Pages
              {
                  builder.OpenComponent<FirstForm>(0);
                  builder.CloseComponent();
-             }, width: 300);
+             }, width: 240, height:320);
         }
 
         async Task OpenSecondWindow()
@@ -24,7 +25,16 @@ namespace DeskUI.Pages
             {
                 builder.OpenComponent<SecondForm>(0);
                 builder.CloseComponent();
-            }, width: 600);
+            }, width: 550, height: 250);
+        }
+
+        async Task OpenUIManagerWindow()
+        {
+            await WindowManager.Show("UIManager", builder =>
+            {
+                builder.OpenComponent<UIManagerForm>(0);
+                builder.CloseComponent();
+            }, width: 800, height: 400);
         }
     }
 }
