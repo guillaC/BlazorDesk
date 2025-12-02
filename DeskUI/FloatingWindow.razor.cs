@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-namespace DeskUI.Shared.Window
+namespace DeskUI
 {
     public partial class FloatingWindow : IDisposable
     {
@@ -16,7 +16,7 @@ namespace DeskUI.Shared.Window
         [Parameter] public EventCallback OnCloseRequested { get; set; }
 
         private string WindowId => $"window-{Id}";
-        private string Style => $"position:fixed; top:{Top}px; left:{Left}px; width:{Width}px; {(Height>0 ? "height:" + Height + "px;" : "")} z-index:{ZIndex};";
+        private string Style => $"position:fixed; top:{Top}px; left:{Left}px; width:{Width}px; {(Height > 0 ? "height:" + Height + "px;" : "")} z-index:{ZIndex};";
 
         protected override void OnInitialized()
         {

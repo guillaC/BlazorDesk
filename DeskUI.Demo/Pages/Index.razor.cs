@@ -1,7 +1,7 @@
 ﻿using DeskUI.Services;
-using DeskUI.Shared.Components.Forms;
+using DeskUI.Demo.Shared.Components.Forms;
 
-namespace DeskUI.Pages
+namespace DeskUI.Demo.Pages
 {
     public partial class Index
     {

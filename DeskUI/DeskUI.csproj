@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <RazorClassLibrary>true</RazorClassLibrary>
+    <ScopedCssEnabled>true</ScopedCssEnabled>
+    <GenerateScopedCss>true</GenerateScopedCss>
+    
+    <PackageId>DeskUI</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>GuillaC</Authors>
+    <Description>OS-like windowing system for Blazor</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,4 +1,4 @@
-﻿.window {
+﻿﻿.window {
     position: fixed;
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
@@ -10,13 +10,13 @@
     flex-direction: column;
 }
 
-    .window * {
-        pointer-events: auto;
-    }
+.window * {
+    pointer-events: auto;
+}
 
 .window-content {
     overflow-y: auto;
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 .window-resizer {
@@ -31,8 +31,8 @@
 }
 
 .theme-dark.window {
-    background-color: #262626; 
-    border: 1px solid #4a4a4a; 
+    background-color: #262626;
+    border: 1px solid #4a4a4a;
     box-shadow: 0 0 0 1px #111, 0 4px 8px rgba(0, 0, 0, 0.3);
     color: #e0e0e0;
 }
@@ -88,7 +88,7 @@
     background-color: #e0e0e0;
     color: #222;
     padding: 6px 10px;
-    display: flex;      
+    display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: move;

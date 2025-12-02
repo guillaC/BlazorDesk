@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace DeskUI.Shared.Window
+namespace DeskUI
 {
     public partial class WindowHost
     {

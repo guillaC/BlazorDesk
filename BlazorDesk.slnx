@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="DeskUI.Demo/DeskUI.Demo.csproj" />
+  <Project Path="DeskUI/DeskUI.csproj" Id="bb603ecb-20d7-44e2-977c-016bb6889cce" />
+</Solution>
