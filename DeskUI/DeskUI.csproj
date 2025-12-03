@@ -8,11 +8,14 @@
     <RazorClassLibrary>true</RazorClassLibrary>
     <ScopedCssEnabled>true</ScopedCssEnabled>
     <GenerateScopedCss>true</GenerateScopedCss>
-    
+
     <PackageId>DeskUI</PackageId>
-    <Version>1.0.0</Version>
+    <Version>0.1.0-alpha</Version>
     <Authors>GuillaC</Authors>
-    <Description>OS-like windowing system for Blazor</Description>
+    <Description>OS-like multi-window system for Blazor</Description>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/guillaC/BlazorDesk</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/guillaC/BlazorDesk</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
