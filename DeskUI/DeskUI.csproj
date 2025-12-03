@@ -13,17 +13,16 @@
     <Version>0.1.0-alpha</Version>
     <Authors>GuillaC</Authors>
     <Description>OS-like multi-window system for Blazor</Description>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/guillaC/BlazorDesk</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/guillaC/BlazorDesk</RepositoryUrl>
+    <PackageReadmeFile>README.NuGet.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/guillaC/DeskUI</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/guillaC/DeskUI</RepositoryUrl>
   </PropertyGroup>
-
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="README.NuGet.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 </Project>
