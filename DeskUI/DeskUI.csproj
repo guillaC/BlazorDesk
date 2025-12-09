@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -8,14 +8,16 @@
     <RazorClassLibrary>true</RazorClassLibrary>
     <ScopedCssEnabled>true</ScopedCssEnabled>
     <GenerateScopedCss>true</GenerateScopedCss>
-
     <PackageId>DeskUI</PackageId>
-    <Version>0.1.0-alpha</Version>
+    <Version>1.0.0</Version>
     <Authors>GuillaC</Authors>
     <Description>OS-like multi-window system for Blazor</Description>
     <PackageReadmeFile>README.NuGet.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/guillaC/DeskUI</PackageProjectUrl>
     <RepositoryUrl>https://github.com/guillaC/DeskUI</RepositoryUrl>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageTags>rcl;ui;ux;window-manager;multi-window;blazor;blazor-server;modular-ui;component-library</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="README.NuGet.md" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>
