@@ -17,7 +17,7 @@ namespace DeskUI.Services
         public bool IsResizing => Resizing is not null;
         public WindowInstance? GetWindow(Guid id) => Windows.FirstOrDefault(w => w.Id == id);
 
-        public async Task Show(string title, RenderFragment content, int width = 600, int height = 400, int top = 100, int left = 100)
+        public async Task Show(string title, RenderFragment content, int width = 600, int height = 400, int top = 100, int left = 100, bool allowClose = true)
         {
             var id = Guid.NewGuid();
             Windows.Add(new WindowInstance
@@ -29,7 +29,8 @@ namespace DeskUI.Services
                 Height = height,
                 Top = top,
                 Left = left,
-                ZIndex = ++_zCounter
+                ZIndex = ++_zCounter,
+                AllowClose = allowClose,
             });
 
             if (OnChange != null) await OnChange.Invoke();
@@ -135,5 +136,6 @@ namespace DeskUI.Services
         public int Top { get; set; }
         public int Left { get; set; }
         public int Height { get; set; }
+        public bool AllowClose { get; set; }
     }
 }

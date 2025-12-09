@@ -10,7 +10,11 @@
      @onmousedown="BringToFront">
     <div class="window-header" @onmousedown="StartDrag">
         <div class="window-title">@Title</div>
-        <button class="window-close" @onclick="Close">&times;</button>
+
+        @if (AllowClose)
+        {
+            <button class="window-close" @onclick="Close">&times;</button>
+        }
     </div>
 
     <div class="window-content">

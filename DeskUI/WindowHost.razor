@@ -14,6 +14,7 @@
                         Left="@window.Left"
                         Width="@window.Width"
                         Height="@window.Height"
-                        OnCloseRequested="@(() => WindowManager.Close(window.Id))" />
+                        OnCloseRequested="@(() => WindowManager.Close(window.Id))"
+                        AllowClose ="@window.AllowClose"/>
     }
 </div>

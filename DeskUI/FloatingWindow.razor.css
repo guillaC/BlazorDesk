@@ -40,6 +40,7 @@
 .theme-dark .window-header {
     background-color: #333;
     color: #f0f0f0;
+    min-height: 37px;
     padding: 6px 10px;
     display: flex;
     justify-content: space-between;
@@ -87,6 +88,7 @@
 .theme-light .window-header {
     background-color: #e0e0e0;
     color: #222;
+    min-height: 37px;
     padding: 6px 10px;
     display: flex;
     justify-content: space-between;
