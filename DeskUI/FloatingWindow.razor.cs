@@ -15,8 +15,9 @@ namespace DeskUI
         [Parameter] public int Height { get; set; }
         [Parameter] public EventCallback OnCloseRequested { get; set; }
         [Parameter] public bool AllowClose { get; set; }
+        [Parameter] public bool Overlayed { get; set; }
 
-        private string WindowId => $"window-{Id}";
+        public string WindowId => $"window-{Id}";
         private string Style => $"position:fixed; top:{Top}px; left:{Left}px; width:{Width}px; {(Height > 0 ? "height:" + Height + "px;" : "")} z-index:{ZIndex};";
 
         protected override void OnInitialized()
@@ -44,13 +45,13 @@ namespace DeskUI
             WindowManager.StartDrag(Id, (int)e.ClientX, (int)e.ClientY);
         }
 
-        private async Task BringToFront(MouseEventArgs _)
+        private async Task BringToFrontAsync(MouseEventArgs _)
         {
-            await WindowManager.BringToFront(Id);
+            await WindowManager.BringToFrontAsync(Id);
             await InvokeAsync(StateHasChanged);
         }
 
-        private async Task Close()
+        private async Task CloseAsync()
         {
             await OnCloseRequested.InvokeAsync();
         }

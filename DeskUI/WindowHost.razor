@@ -6,15 +6,17 @@
 <div class="window-host" @onmouseup="OnMouseUp">
     @foreach (var window in WindowManager.Windows)
     {
-        <FloatingWindow Title="@window.Title"
-                        ChildContent="@window.Content"
+        <FloatingWindow @key="window.Id"
                         Id="@window.Id"
+                        Title="@window.Title"
+                        ChildContent="@window.Content"
                         ZIndex="@window.ZIndex"
                         Top="@window.Top"
                         Left="@window.Left"
                         Width="@window.Width"
                         Height="@window.Height"
                         OnCloseRequested="@(() => WindowManager.Close(window.Id))"
-                        AllowClose ="@window.AllowClose"/>
+                        AllowClose="@window.AllowClose"
+                        Overlayed="@window.Overlayed" />
     }
 </div>

@@ -21,17 +21,17 @@ namespace DeskUI
         }
 
         [JSInvokable]
-        public Task HandleMouseMove(int x, int y)
+        public Task HandleMouseMoveAsync(int x, int y)
         {
-            if (WindowManager.IsDragging) return WindowManager.HandleMouseMove(x, y);
-            if (WindowManager.IsResizing) return WindowManager.HandleResize(x, y);
+            if (WindowManager.IsDragging) return WindowManager.HandleMouseMoveAsync(x, y);
+            if (WindowManager.IsResizing) return WindowManager.HandleResizeAsync(x, y);
             return Task.CompletedTask;
         }
 
-        private async Task OnMouseUp()
+        private void OnMouseUp()
         {
-            await WindowManager.StopDrag();
-            await WindowManager.StopResize();
+            WindowManager.StopDrag();
+            WindowManager.StopResize();
         }
     }
 }

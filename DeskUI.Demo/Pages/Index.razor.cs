@@ -12,7 +12,7 @@ namespace DeskUI.Demo.Pages
 
         async Task OpenFirstWindow()
         {
-            await WindowManager.Show("FirstComponent", builder =>
+            await WindowManager.OpenWindowAsync("FirstComponent", builder =>
              {
                  builder.OpenComponent<FirstForm>(0);
                  builder.CloseComponent();
@@ -21,16 +21,16 @@ namespace DeskUI.Demo.Pages
 
         async Task OpenSecondWindow()
         {
-            await WindowManager.Show("SecondComponent (AllowClose = false)", builder =>
+            await WindowManager.OpenWindowAsync("SecondComponent (Modal)", builder =>
             {
                 builder.OpenComponent<SecondForm>(0);
                 builder.CloseComponent();
-            }, width: 550, height: 250, allowClose: false);
+            }, width: 550, height: 250, allowClose: false, overlayed:true);
         }
 
         async Task OpenUIManagerWindow()
         {
-            await WindowManager.Show("UIManager", builder =>
+            await WindowManager.OpenWindowAsync("UIManager", builder =>
             {
                 builder.OpenComponent<UIManagerForm>(0);
                 builder.CloseComponent();

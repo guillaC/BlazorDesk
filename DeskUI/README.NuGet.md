@@ -22,7 +22,7 @@ Full documentation & demo: https://github.com/guillaC/DeskUI
 ```csharp
 async Task OpenFirstWindow()
 {
-    await WindowManager.Show("FirstComponent", builder =>
+    await WindowManager.OpenWindowAsync("FirstComponent", builder =>
     {
         builder.OpenComponent<FirstForm>(0);
         builder.CloseComponent();
@@ -31,11 +31,11 @@ async Task OpenFirstWindow()
 
 async Task OpenSecondWindow()
 {
-    await WindowManager.Show("SecondComponent", builder =>
+    await WindowManager.OpenWindowAsync("SecondComponent (Modal)", builder =>
     {
         builder.OpenComponent<SecondForm>(0);
         builder.CloseComponent();
-    }, width: 550, height: 250);
+    }, width: 550, height: 250, allowClose: false, overlayed:true);
 }
 
 ```

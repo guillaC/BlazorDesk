@@ -1,4 +1,12 @@
-﻿﻿.window {
+﻿.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+    pointer-events: auto;
+}
+
+.window {
     position: fixed;
     border-radius: 5px;
     font-family: 'Inter', sans-serif;
