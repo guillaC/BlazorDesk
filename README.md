@@ -1,4 +1,4 @@
-# BlazorDesk  
+# DeskUI  
 ![Blazor](https://img.shields.io/badge/blazor-purple?logo=blazor&logoColor=white)
 ![NuGet](https://img.shields.io/nuget/vpre/DeskUI?label=nuget&logo=nuget)  
 ![Stars](https://img.shields.io/github/stars/guillaC/BlazorDesk?style=flat)
