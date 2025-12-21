@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DeskUI.DemoRCL\DeskUI.DemoRCL.csproj" />
     <ProjectReference Include="..\DeskUI\DeskUI.csproj" />
   </ItemGroup>
 

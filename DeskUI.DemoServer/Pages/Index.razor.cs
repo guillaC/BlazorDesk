@@ -1,7 +1,6 @@
 ﻿using DeskUI.Services;
-using DeskUI.Demo.Shared.Components.Forms;
 
-namespace DeskUI.Demo.Pages
+namespace DeskUI.DemoServer.Pages
 {
     public partial class Index
     {
@@ -14,7 +13,7 @@ namespace DeskUI.Demo.Pages
         {
             await WindowManager.OpenWindowAsync("FirstComponent", builder =>
              {
-                 builder.OpenComponent<FirstForm>(0);
+                 builder.OpenComponent<DemoRCL.FirstForm>(0);
                  builder.CloseComponent();
              }, width: 240, height: 320);
         }
@@ -23,7 +22,7 @@ namespace DeskUI.Demo.Pages
         {
             await WindowManager.OpenWindowAsync("SecondComponent (Modal)", builder =>
             {
-                builder.OpenComponent<SecondForm>(0);
+                builder.OpenComponent<DemoRCL.SecondForm>(0);
                 builder.CloseComponent();
             }, width: 550, height: 250, allowClose: false, overlayed:true);
         }
@@ -32,7 +31,7 @@ namespace DeskUI.Demo.Pages
         {
             await WindowManager.OpenWindowAsync("UIManager", builder =>
             {
-                builder.OpenComponent<UIManagerForm>(0);
+                builder.OpenComponent<DemoRCL.UIManagerForm>(0);
                 builder.CloseComponent();
             }, width: 800, height: 400);
         }

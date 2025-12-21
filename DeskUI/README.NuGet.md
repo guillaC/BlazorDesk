@@ -3,7 +3,7 @@ OS-like multi-window system
 
 Full documentation & demo: https://github.com/guillaC/DeskUI
 
-## Setup
+## Setup (Blazor Server / WebAssembly)
 
 - Import the namespace in `_Imports.razor` (DeskUI)
 ```razor

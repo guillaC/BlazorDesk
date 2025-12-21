@@ -4,6 +4,8 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="DeskUI.Demo/DeskUI.Demo.csproj" />
+  <Project Path="DeskUI.DemoRCL/DeskUI.DemoRCL.csproj" Id="c021ce32-e425-4cc9-95e8-6f1739671f22" />
+  <Project Path="DeskUI.DemoServer/DeskUI.DemoServer.csproj" />
+  <Project Path="DeskUI.DemoWASM/DeskUI.DemoWASM.csproj" Id="5c98b3df-ffa2-4876-85ee-24282c35ed19" />
   <Project Path="DeskUI/DeskUI.csproj" Id="bb603ecb-20d7-44e2-977c-016bb6889cce" />
 </Solution>
